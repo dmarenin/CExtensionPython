@@ -1,3 +1,2 @@
 ﻿  module2.c
-C:\Users\dmarenin\source\repos\module2\module2.c(31,57): warning C4030: первый список формальных параметров длиннее второго
   module2.vcxproj -> C:\Users\dmarenin\source\repos\module2\Debug\module2.pyd

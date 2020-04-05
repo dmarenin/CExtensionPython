@@ -13,10 +13,11 @@ PyObject *module2_example(PyObject *self, PyObject *args, PyObject *kwargs) {
     /* Shared references that do not need Py_DECREF before returning. */
     PyObject *obj = NULL;
     int number = 0;
+    PyObject* callback = NULL;
 
     /* Parse positional and keyword arguments */
-    static char* keywords[] = { "obj", "number", NULL };
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Oi", keywords, &obj, &number)) {
+    static char* keywords[] = { "obj", "number", "callback", NULL };
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "OiO", keywords, &obj, &number, &callback)) {
         return NULL;
     }
 
@@ -27,8 +28,24 @@ PyObject *module2_example(PyObject *self, PyObject *args, PyObject *kwargs) {
         return NULL;    /* return NULL indicates error */
     }
 
+    PyObject* result;
+    PyObject* arglist;
+    int arg = 123;
 
-    PyObject* PyObject_CallFunction(PyObject * callable);
+    arglist = Py_BuildValue("(i)", arg);
+
+    result = PyObject_CallObject(callback, arglist);
+
+    //Py_DECREF(result);
+
+    //result  = PyObject_CallFunction(callback, arglist);
+
+    PyObject* dict;
+
+    dict = Py_BuildValue("{s:i}", "name", 1);
+
+    //result = PyObject_Call(callback, NULL, dict);
+
 
     PyObject* t;
 
